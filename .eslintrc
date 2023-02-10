@@ -1,0 +1,43 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "extends": [
+      "react-app",
+      "prettier",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@next/next/recommended"
+    ],
+    "plugins": ["react", "prettier", "@typescript-eslint", "react-hooks"],
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "prettier/prettier": [
+        "warn",
+        {
+          "printWidth": 100,
+          "arrowParens": "avoid",
+          "semi": false,
+          "trailingComma": "none",
+          "endOfLine": "lf",
+          "tabWidth": 2,
+          "useTabs": false,
+          "singleQuote": true
+        }
+      ],
+      "no-console": "warn",
+      "quotes": [2, "single"],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/prop-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-empty-interface": "off",
+      "no-empty-pattern": "off"
+    }
+  }
+  

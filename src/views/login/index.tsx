@@ -1,20 +1,23 @@
 
 import useTitle from '@/hooks/use-title'
 import { Box, Button, Card, styled, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
     useTitle('Login')
     return (
         <LoginBox>
             <Box position="absolute" top="40px" left="40px">
-                <img
-                    src="/vite.svg"
-                    alt="Logo dark"
-                    className="logo"
-                    width={149}
-                    height={40}
-                    style={{ objectFit: 'contain' }}
-                />
+                <Link to="/">
+                    <img
+                        src="/vite.svg"
+                        alt="Logo dark"
+                        className="logo"
+                        width={149}
+                        height={40}
+                        style={{ objectFit: 'contain' }}
+                    />
+                </Link>
             </Box>
             <BoxFormLogin>
                 <Card

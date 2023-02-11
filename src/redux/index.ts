@@ -1,6 +1,6 @@
 import { __prod__ } from "@/utils/constant";
 import { configureStore } from "@reduxjs/toolkit";
-import createRootReducer from "./reducer";
+import createRootReducer from "@/redux/reducer";
 
 const store = configureStore({
   reducer: createRootReducer(),

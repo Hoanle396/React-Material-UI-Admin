@@ -3,10 +3,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import App from './App'
+import App from '@/App'
 import TitleContextProvider from './contexts/title-context'
-import store from './redux'
-import theme from './styles/theme'
+import store from '@/redux'
+import theme from '@/styles/theme'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

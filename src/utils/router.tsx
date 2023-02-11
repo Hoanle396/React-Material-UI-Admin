@@ -1,4 +1,4 @@
-import { Dashboard, Delete, Group, HourglassBottom } from "@mui/icons-material";
+import { Dashboard, Delete, Group, HourglassBottom, Login } from "@mui/icons-material";
 import React from "react";
 
 interface Irouter {
@@ -21,5 +21,10 @@ export const superAdminRoutes: Irouter[] = [
     title: "Loading",
     Icon: <HourglassBottom />,
     path: "/admin/loading",
+  },
+  {
+    title: "Login",
+    Icon: <Login />,
+    path: "/login",
   },
 ];

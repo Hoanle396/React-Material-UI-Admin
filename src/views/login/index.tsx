@@ -1,10 +1,18 @@
 
 import useTitle from '@/hooks/use-title'
+import { setIsLogin } from '@/redux/slice/auth'
 import { Box, Button, Card, styled, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
     useTitle('Login')
+    const dispath = useDispatch()
+    const navigate = useNavigate()
+    const handleLogin = () => {
+        dispath(setIsLogin(true))
+        navigate('/admin')
+    }
     return (
         <LoginBox>
             <Box position="absolute" top="40px" left="40px">
@@ -73,6 +81,7 @@ const Login = () => {
                                     mt: '56px',
                                     borderRadius: '6px'
                                 }}
+                                onClick={handleLogin}
                             >
                                 <img
                                     className="google-logo"

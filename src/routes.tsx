@@ -1,6 +1,7 @@
-import { FC, lazy, LazyExoticComponent, Suspense } from "react";
 import Layout from "@/components/layout";
 import Loading from "@/components/Loading";
+import AuthProvider from "@/contexts/auth-provider";
+import { FC, lazy, LazyExoticComponent, Suspense } from "react";
 import { Navigate } from "react-router-dom";
 
 
@@ -19,7 +20,7 @@ const Login = Loadable(lazy(() => import("./views/login")))
 const routes = [
   {
     path: "/admin",
-    element: <Layout />,
+    element: <AuthProvider><Layout /></AuthProvider>,
     children: [
       {
         path: "/admin",
@@ -45,7 +46,7 @@ const routes = [
   },
   {
     path: '*',
-    element: <Navigate to='/admin/dashboard' />
+    element: <Navigate to='/admin' />
   }
 ];
 

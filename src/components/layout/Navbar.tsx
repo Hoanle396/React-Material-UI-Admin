@@ -2,6 +2,7 @@ import { TitleContext } from '@/contexts/title-context';
 import { AppBar, Box, styled, Theme, Toolbar, Typography, useMediaQuery } from '@mui/material';
 
 import { FC, useContext } from 'react';
+import ProfilePopover from './ProfilePopover';
 
 // root component interface
 interface DashboardNavBarProps {
@@ -70,7 +71,7 @@ const DashboardNavbar: FC<DashboardNavBarProps> = ({ setShowMobileSideBar }) => 
                     {title}
                 </Typography>
                 <Box flexGrow={1} ml={1} />
-                {/* <ProfilePopover /> */}
+                <ProfilePopover />
             </StyledToolBar>
         </DashboardNavbarRoot>
     );

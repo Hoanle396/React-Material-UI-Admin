@@ -1,18 +1,69 @@
 
+import { ILoginResponse, IUser, loginRequest, useUser } from '@/api/auth'
 import useTitle from '@/hooks/use-title'
-import { setIsLogin } from '@/redux/slice/auth'
+import { setIsLogin, setUserInfor } from '@/redux/slice/auth'
+import { setLocalStorage } from '@/utils/common'
+import { GOOGLE_CLIENT_ID, STORAGE_KEY, __prod__ } from '@/utils/constant'
 import { Box, Button, Card, styled, Typography } from '@mui/material'
+import { gapi } from 'gapi-script'
+import { useEffect } from 'react'
+import { useGoogleLogin } from 'react-google-login'
+import { toast } from 'react-hot-toast'
+import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 const Login = () => {
     useTitle('Login')
-    const dispath = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleLogin = () => {
-        dispath(setIsLogin(true))
-        navigate('/admin')
+    const { user, refetch } = useUser({
+        enabled: false,
+        onSuccess: (res: IUser) => {
+            dispatch(setUserInfor({ ...res }))
+            toast.success('You logged in successfully!')
+            navigate('/admin')
+        }
+    })
+    const { mutate, isLoading } = useMutation(loginRequest, {
+        onSuccess: async (res: ILoginResponse) => {
+            dispatch(setIsLogin(true))
+            setLocalStorage(STORAGE_KEY.accessToken, res?.token)
+            setLocalStorage(STORAGE_KEY.refreshToken, res.refreshToken)
+            refetch()
+        },
+        onError: () => {
+            toast.error('You login failed please try again!')
+        }
+    })
+
+    useEffect(() => {
+        gapi.load('client:auth2', () => {
+            gapi.client.init({
+                clientId: GOOGLE_CLIENT_ID,
+                // hosted_domain: __prod__ ? GOOGLE_HOSTED_DOMAIN : '',
+                scope:
+                    'email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid'
+            })
+        })
+    })
+
+    async function onGoogleLoginSuccess(response: any) {
+        const { tokenId } = response
+        mutate(tokenId)
     }
+
+    const onGoogleLoginFailure = () => {
+        toast.error('You login failed please try again!')
+    }
+
+    const { signIn } = useGoogleLogin({
+        onSuccess: onGoogleLoginSuccess,
+        onFailure: onGoogleLoginFailure,
+        clientId: GOOGLE_CLIENT_ID ?? '',
+        cookiePolicy: 'single_host_origin'
+    })
+
     return (
         <LoginBox>
             <Box position="absolute" top="40px" left="40px">
@@ -81,7 +132,7 @@ const Login = () => {
                                     mt: '56px',
                                     borderRadius: '6px'
                                 }}
-                                onClick={handleLogin}
+                                onClick={signIn}
                             >
                                 <img
                                     className="google-logo"

@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import TitleContextProvider from './contexts/title-context'
+import { Toaster } from 'react-hot-toast'
 const queryclient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <App />
           </BrowserRouter>
           </TitleContextProvider>
+          <Toaster />
           {/* <ReactQueryDevtools /> */}
         </QueryClientProvider>
       </ThemeProvider>

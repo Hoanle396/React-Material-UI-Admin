@@ -22,13 +22,13 @@ export const superAdminRoutes: Irouter[] = [
     Icon: <Group />,
     path: "/admin/user",
   },
+  // {
+  //   title: "Loading",
+  //   Icon: <HourglassBottom />,
+  //   path: "/admin/loading",
+  // },
   {
-    title: "Loading",
-    Icon: <HourglassBottom />,
-    path: "/admin/loading",
-  },
-  {
-    title: "Login",
+    title: "Logout",
     Icon: <Login />,
     path: "/login",
   },

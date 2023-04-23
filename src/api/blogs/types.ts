@@ -22,7 +22,7 @@ export interface IComment{
 export interface IPayloadCreateBlogs{
   name: string,
   slugs?: string,
-  image: string,
+  image: string|File,
   description: string
 }
 
@@ -44,5 +44,10 @@ export interface IPaginateData{
 
 export interface IListBlogs{
     rows: IBlogs[]
+    count:number
+}
+
+export interface IListComments{
+    rows: IComment[]
     count:number
 }

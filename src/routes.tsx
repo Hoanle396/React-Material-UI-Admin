@@ -17,6 +17,11 @@ const Dashboard = Loadable(lazy(() => import("./views/dashboard")))
 const Blank = Loadable(lazy(() => import("./views/blank")))
 const Login = Loadable(lazy(() => import("./views/login")))
 const Blogs = Loadable(lazy(() => import("./views/blogs")))
+const CreateBlogs = Loadable(lazy(() => import("./views/blogs/create")))
+const EditBlogs = Loadable(lazy(() => import("./views/blogs/edit")))
+const CreateUsers = Loadable(lazy(() => import("./views/user-management/create")))
+const UpdateUsers = Loadable(lazy(() => import("./views/user-management/edit")))
+const Comments = Loadable(lazy(() => import('./views/blogs/components/comments')))
 
 const routes = [
   {
@@ -36,8 +41,28 @@ const routes = [
         element: <Blogs />
       },
       {
+        path: "/admin/blogs/comments/:id",
+        element: <Comments />
+      },
+      {
+        path: "/admin/blogs/create",
+        element: <CreateBlogs />
+      },
+      {
+        path: "/admin/blogs/:id",
+        element: <EditBlogs />
+      },
+      {
         path: '/admin/user',
         element: <UserManagement />
+      },
+      {
+        path: '/admin/users/create',
+        element: <CreateUsers />
+      },
+      {
+        path: '/admin/users/:id',
+        element: <UpdateUsers />
       },
       {
         path: "*",

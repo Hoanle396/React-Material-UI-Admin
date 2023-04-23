@@ -20,3 +20,11 @@ export interface IUser {
     createAt: string,
     updateAt: string,
 }
+export interface IPayloadCreateUser {
+    fullname: string,
+    email: string,
+}
+export interface IListUsers{
+    rows: IUser[]
+    count:number
+}

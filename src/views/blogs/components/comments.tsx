@@ -1,32 +1,31 @@
-import useTitle from "@/hooks/use-title";
-import { Box, Button, Stack } from '@mui/material';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import ColumnShape from "./components/column-shape";
 import { useUser } from "@/api/auth";
-import CustomTable from "@/components/table";
-import { IBlogs, deleteBlogs, useBlogs } from "@/api/blogs";
-import { Link } from "react-router-dom";
+import { IBlogs, IComment, deleteComment, useCommentById } from "@/api/blogs";
 import ModalDelete, { RefModal } from "@/components/ModalDelete";
+import CustomTable from "@/components/table";
+import useTitle from "@/hooks/use-title";
+import { Box } from '@mui/material';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
+import ColumnShape from "./comment-column";
 import { useMutation } from "react-query";
 import { toast } from "react-hot-toast";
-const Blogs = () => {
-    useTitle('Blogs')
+const Comments = () => {
+    useTitle('Comments')
     const [pageParams, setPageParams] = useState({ page: 1, skip: 0, take: 10 });
+    let { id } = useParams();
+    const navigate = useNavigate()
     const { user } = useUser()
-    const { data, refetch } = useBlogs({
-        skip: pageParams.skip,
-        take: pageParams.take
-    })
+    const { data, refetch } = useCommentById(Number(id))
 
-    const { mutate } = useMutation(deleteBlogs, {
+    const { mutate } = useMutation(deleteComment, {
         onSuccess: () => {
             toast.dismiss()
             refetch()
-            toast.success('deleted blog successfully')
+            toast.success('deleted comment successfully')
         },
         onError: () => {
             toast.dismiss()
-            toast.error('deleted blog failed')
+            toast.error('deleted comment failed')
         }
     })
 
@@ -35,7 +34,7 @@ const Blogs = () => {
         refetch()
     }, [refetch])
 
-    const onOpenDelete = useCallback((item: IBlogs) => {
+    const onOpenDelete = useCallback((item: IComment) => {
         refModalDelete.current?.onOpen(item)
     }, [])
 
@@ -45,11 +44,11 @@ const Blogs = () => {
 
     return (
         <Box pt={2} pb={4}>
-            <Stack width={"100%"} flex="1" direction="row" paddingX={10} justifyContent="end" >
+            {/* <Stack width={"100%"} flex="1" direction="row" paddingX={10} justifyContent="end" >
                 <Link to="/admin/blogs/create">
                     <Button variant="contained">Add new</Button>
                 </Link>
-            </Stack>
+            </Stack> */}
 
             {/* {isLoading && (
                 <FlexBox justifyContent="center" width="100%">
@@ -70,4 +69,4 @@ const Blogs = () => {
     );
 }
 
-export default Blogs
+export default Comments

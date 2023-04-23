@@ -1,13 +1,13 @@
 import { IUser } from '@/api/auth';
 import { IBlogs } from '@/api/blogs';
-import { Comment, Delete, Edit } from '@mui/icons-material';
-import { Button, Stack, Tooltip, Typography } from '@mui/material';
+import { Delete, Edit } from '@mui/icons-material';
+import { Button, Chip, Stack, Tooltip, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 interface IRecord {
     row: {
-        original: IBlogs;
+        original: IUser;
         index: number;
     };
     value: any;
@@ -20,7 +20,7 @@ interface IRecord {
 const ColumnShape = (
     currentPage: number,
     user?: IUser,
-    onOpenDelete?: (row: IBlogs) => void
+    onOpenDelete?: (row: IUser) => void
 ) => [
         {
             Header: 'ID',
@@ -41,42 +41,40 @@ const ColumnShape = (
             accessor: 'name',
             Cell: ({
                 row: {
-                    original: { name, id },
+                    original: { fullname, id },
                 },
             }: IRecord) => {
                 return (
-                    <Tooltip title={name || ''}>
-                        <p>{name ?? '------'}</p>
+                    <Tooltip title={fullname || ''}>
+                        <p>{fullname ?? '------'}</p>
                     </Tooltip>
                 );
             },
         },
         {
-            Header: 'Description',
-            accessor: 'description',
+            Header: 'Email',
+            accessor: 'email',
             Cell: ({ row }: IRecord) => {
-                const { description, id } = row.original;
+                const { email, id } = row.original;
                 return (
-                    <Tooltip title={description || ''}>
+                    <Tooltip title={email || ''}>
                         <Typography noWrap sx={{ maxWidth: 150 }} fontWeight={400}>
-                            {description || ''}
+                            {email || ''}
                         </Typography>
                     </Tooltip>
                 );
             },
         },
         {
-            Header: 'Create By',
+            Header: 'Role',
             accessor: 'creator_name',
             Cell: ({
                 row: {
-                    original: { createdBy },
+                    original: { roles },
                 },
             }: IRecord) => {
                 return (
-                    <Tooltip title={createdBy.fullname || createdBy.email}>
-                        <p>{createdBy.fullname ?? createdBy.email}</p>
-                    </Tooltip>
+                    <Chip label={roles} />
                 );
             },
         },
@@ -96,15 +94,8 @@ const ColumnShape = (
             Cell: ({ row: { original } }: IRecord) => {
                 return (
                     <Stack direction="row" justifyContent="center" sx={{ minWidth: '200px' }}>
-                        <Tooltip title={'comments'} placement="top">
-                            <Link to={`/admin/blogs/comments/${original.id}`}>
-                                <Button variant="contained" sx={{ m: 1 }}>
-                                    <Comment />
-                                </Button>
-                            </Link>
-                        </Tooltip>
                         <Tooltip title={'update'} placement="top">
-                            <Link to={`/admin/blogs/${original.id}`}>
+                            <Link to={`/admin/users/${original.id}`}>
                                 <Button variant="contained" sx={{ m: 1 }}>
                                     <Edit />
                                 </Button>

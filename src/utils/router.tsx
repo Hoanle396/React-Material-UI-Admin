@@ -1,4 +1,4 @@
-import { Dashboard, Delete, Group, HourglassBottom, Login } from "@mui/icons-material";
+import { Dashboard, Delete, Group, HourglassBottom, LibraryBooks, Login } from "@mui/icons-material";
 import React from "react";
 
 interface Irouter {
@@ -11,6 +11,11 @@ export const superAdminRoutes: Irouter[] = [
     title: "Dashboard",
     Icon: <Dashboard />,
     path: "/admin/dashboard",
+  },
+  {
+    title: "Blogs Management",
+    Icon: <LibraryBooks />,
+    path: "/admin/blogs",
   },
   {
     title: "User Management",

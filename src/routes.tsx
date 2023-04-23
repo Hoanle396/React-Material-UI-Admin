@@ -16,6 +16,7 @@ const UserManagement = Loadable(lazy(() => import("./views/user-management")))
 const Dashboard = Loadable(lazy(() => import("./views/dashboard")))
 const Blank = Loadable(lazy(() => import("./views/blank")))
 const Login = Loadable(lazy(() => import("./views/login")))
+const Blogs = Loadable(lazy(() => import("./views/blogs")))
 
 const routes = [
   {
@@ -29,6 +30,10 @@ const routes = [
       {
         path: "/admin/dashboard",
         element: <Dashboard />
+      },
+      {
+        path: "/admin/blogs",
+        element: <Blogs />
       },
       {
         path: '/admin/user',

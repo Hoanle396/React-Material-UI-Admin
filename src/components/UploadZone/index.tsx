@@ -45,7 +45,7 @@ const UploadZone: FC<Props> = ({
         [onSuccess]
     );
 
-    const onDropRejected = useCallback((acceptedFiles) => {
+    const onDropRejected = useCallback((acceptedFiles: any) => {
         const firstFile = acceptedFiles?.[0];
         if (firstFile.errors && firstFile.errors[0] && firstFile.errors[0].code === 'file-too-large') {
             toast.error('File is too large.');

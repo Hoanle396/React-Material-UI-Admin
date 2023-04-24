@@ -92,7 +92,7 @@ const CreateBlogs = () => {
                         </Stack>
                         <UploadZone
                             sx={{ width: '100%', height: 246, mx: 'unset' }}
-                            onSuccess={file => methods.setValue('image', file)}
+                            onSuccess={file => methods.setValue('image', file!)}
                             maxSize={4 * 1024 * 1024}
                         >
                             <Box display="flex" flexDirection="column" gap={1}>

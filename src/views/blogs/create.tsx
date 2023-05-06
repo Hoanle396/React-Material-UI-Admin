@@ -74,12 +74,13 @@ const CreateBlogs = () => {
                             <TextField
                                 label="Blog Title"
                                 fullWidth
+                                id="name"
                                 name="name"
                                 limit={100}
                             />
                         </FormControl>
                         <FormControl fullWidth>
-                            <TextField label="Blog Slug" fullWidth name="slugs" />
+                            <TextField label="Blog Slug" fullWidth name="slugs" id="slugs" />
                         </FormControl>
                         <Stack flexDirection="row" justifyContent="flex-start">
                             <Typography fontSize={16} fontWeight={600}>
@@ -105,6 +106,7 @@ const CreateBlogs = () => {
                                 <Button
                                     variant="outlined"
                                     component="span"
+                                    id="image"
                                     startIcon={<Upload />}
                                 >
                                     Upload Image
@@ -117,12 +119,12 @@ const CreateBlogs = () => {
                             </Typography>
                         )}
                         <FormControl fullWidth>
-                            <TextField label="Blog Description" multiline rows={5} fullWidth name="description" />
+                            <TextField label="Blog Description" multiline rows={5} fullWidth name="description" id="description" />
                         </FormControl>
                     </Stack>
 
                     <FormControl margin="dense">
-                        <LoadingButton variant="contained" loading={isLoading} type="submit">Submit</LoadingButton>
+                        <LoadingButton variant="contained" loading={isLoading} type="submit" name="submit">Submit</LoadingButton>
                     </FormControl>
                 </FormWrapper>
             </Box>

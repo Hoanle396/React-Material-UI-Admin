@@ -56,6 +56,7 @@ const ModalDeleteAdmin = (props: any, ref: Ref<RefModal>) => {
                     autoFocus
                     variant="contained"
                     color="error"
+                    name="delete"
                     loading={loading}
                     onClick={onDeleted}
                 >

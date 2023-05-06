@@ -71,7 +71,7 @@ const UpdateUsers = () => {
                     </Stack>
 
                     <FormControl margin="dense">
-                        <LoadingButton variant="contained" loading={isLoading} type="submit">Submit</LoadingButton>
+                        <LoadingButton variant="contained" loading={isLoading} type="submit" name="submit">Submit</LoadingButton>
                     </FormControl>
                 </FormWrapper>
             </Box>

@@ -89,12 +89,13 @@ const EditBlogs = () => {
                                 label="Blog Title"
                                 fullWidth
                                 name="name"
+                                id="name"
                                 defaultValue={blogData?.name}
                                 limit={255}
                             />
                         </FormControl>
                         <FormControl fullWidth>
-                            <TextField label="Blog Slug" fullWidth name="slugs" defaultValue={blogData?.slugs} />
+                            <TextField label="Blog Slug" fullWidth name="slugs" defaultValue={blogData?.slugs} id="slugs" />
                         </FormControl>
                         <Stack flexDirection="row" justifyContent="flex-start">
                             <Typography fontSize={16} fontWeight={600}>
@@ -122,6 +123,7 @@ const EditBlogs = () => {
                                     variant="outlined"
                                     component="span"
                                     startIcon={<Upload />}
+                                    id="image"
                                 >
                                     Upload Image
                                 </Button>
@@ -133,12 +135,12 @@ const EditBlogs = () => {
                             </Typography>
                         )}
                         <FormControl fullWidth>
-                            <TextField label="Blog Description" multiline rows={5} fullWidth name="description" defaultValue={blogData?.description} />
+                            <TextField label="Blog Description" multiline rows={5} id="description" fullWidth name="description" defaultValue={blogData?.description} />
                         </FormControl>
                     </Stack>
 
                     <FormControl margin="dense">
-                        <LoadingButton variant="contained" loading={isLoading} type="submit">Submit</LoadingButton>
+                        <LoadingButton variant="contained" loading={isLoading} type="submit" name="submit">Submit</LoadingButton>
                     </FormControl>
                 </FormWrapper>
             </Box>

@@ -38,8 +38,9 @@ const Layout: FC<IProps> = ({ children }) => {
         closeMobileSideBar={() => dispatch(setOpenSidebar())}
       />
       <Wrapper
-        width={matchDesktop && !open ? 'calc(100% - 80px)' : 'calc(100% - 280px)'}
-        ml={matchDesktop && !open ? `${sidebar_xs}px` : `${sidebar_size}px`}>
+        width={matchDesktop && !open ? 'calc(100% - 80px)' : 'calc(100% - 300px)'}
+        ml={matchDesktop && !open ? `${sidebar_xs}px` : `${sidebar_size}px`}
+        pr={`30px`}>
         <DashboardNavbar
           setShowMobileSideBar={() => dispatch(setOpenSidebar())}
         />

@@ -329,6 +329,7 @@ const Dashboard = () => {
         id="id"
         value="value"
         leavesOnly
+        motionConfig="slow"
         onClick={(e) => setLoading(e.id == isLoading ? '' : e.id)}
         zoomedId={isLoading}
         enableLabels
